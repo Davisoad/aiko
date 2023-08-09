@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.validation.Valid;
 import java.sql.Timestamp;
@@ -35,7 +36,7 @@ public class EquipmentStateHistoryController {
     @PostMapping
     public ResponseEntity<EquipmentStateHistory> salvarEquipmentStateHistory(@Valid @RequestBody EquipmentStateHistory equipmentStateHistory) {
         UUID equipment_id = equipmentStateHistory.getEquipmentStateHistoryId().getEquipmentId();
-        Timestamp date = equipmentStateHistory.getDate();
+        LocalDateTime date = equipmentStateHistory.getDate();
         UUID equipment_state_id = equipmentStateHistory.getEquipmentStateHistoryId().getEquipmentStateId();
 
         Equipment existingEquipment = equipmentRepository.findById(equipment_id).orElse(null);
@@ -53,7 +54,7 @@ public class EquipmentStateHistoryController {
     }
 
     @GetMapping(path = "/{id}")
-    public List<EquipmentStateHistory> obterEquipmentStateHistoryPorIdDate(@PathVariable UUID id, @RequestParam("date") Timestamp date, @RequestParam("id") UUID equipment_state_id) {
+    public List<EquipmentStateHistory> obterEquipmentStateHistoryPorIdDate(@PathVariable UUID id, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date, @RequestParam("id") UUID equipment_state_id) {
         return equipmentStateHistoryRepository
                 .findByEquipmentStateHistoryIdEquipmentIdAndEquipmentStateHistoryIdEquipmentStateIdAndDate(
                         id,
@@ -63,7 +64,7 @@ public class EquipmentStateHistoryController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deletarEquipmentStateHistory(@PathVariable("id") UUID equipmentId, @RequestParam("date") Timestamp date, @RequestParam("id") UUID equipment_state_id) {
+    public ResponseEntity<String> deletarEquipmentStateHistory(@PathVariable("id") UUID equipmentId, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date, @RequestParam("id") UUID equipment_state_id) {
         List<EquipmentStateHistory> resultList = equipmentStateHistoryRepository
                 .findByEquipmentStateHistoryIdEquipmentIdAndEquipmentStateHistoryIdEquipmentStateIdAndDate(
                         equipmentId,

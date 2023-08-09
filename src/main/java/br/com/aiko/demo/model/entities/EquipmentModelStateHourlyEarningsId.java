@@ -1,5 +1,6 @@
 package br.com.aiko.demo.model.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,31 +9,33 @@ import java.util.UUID;
 @Embeddable
 public class EquipmentModelStateHourlyEarningsId implements Serializable {
 
-    private UUID equipment_model_id;
-    private UUID equipment_state_id;
+    @Column(name = "equipment_model_id")
+    private UUID equipmentModelId;
+    @Column(name = "equipment_state_id")
+    private UUID equipmentStateId;
 
     public EquipmentModelStateHourlyEarningsId() {
     }
 
-    public EquipmentModelStateHourlyEarningsId(UUID equipment_model_id, UUID equipment_state_id) {
-        this.equipment_model_id = equipment_model_id;
-        this.equipment_state_id = equipment_state_id;
+    public EquipmentModelStateHourlyEarningsId(UUID equipmentModelId, UUID equipmentStateId) {
+        this.equipmentModelId = equipmentModelId;
+        this.equipmentStateId = equipmentStateId;
     }
 
-    public UUID getEquipment_model_id() {
-        return equipment_model_id;
+    public UUID getEquipmentModelId() {
+        return equipmentModelId;
     }
 
-    public void setEquipment_model_id(UUID equipment_model_id) {
-        this.equipment_model_id = equipment_model_id;
+    public void setEquipmentModelId(UUID equipmentModelId) {
+        this.equipmentModelId = equipmentModelId;
     }
 
-    public UUID getEquipment_state_id() {
-        return equipment_state_id;
+    public UUID getEquipmentStateId() {
+        return equipmentStateId;
     }
 
-    public void setEquipment_state_id(UUID equipment_state_id) {
-        this.equipment_state_id = equipment_state_id;
+    public void setEquipmentStateId(UUID equipmentStateId) {
+        this.equipmentStateId = equipmentStateId;
     }
 
     @Override
@@ -40,11 +43,11 @@ public class EquipmentModelStateHourlyEarningsId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EquipmentModelStateHourlyEarningsId that = (EquipmentModelStateHourlyEarningsId) o;
-        return equipment_model_id.equals(that.equipment_model_id) && equipment_state_id.equals(that.equipment_state_id);
+        return Objects.equals(equipmentModelId, that.equipmentModelId) && Objects.equals(equipmentStateId, that.equipmentStateId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(equipment_model_id, equipment_state_id);
+        return Objects.hash(equipmentModelId, equipmentStateId);
     }
 }

@@ -2,7 +2,7 @@ package br.com.aiko.demo.model.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +16,7 @@ public class EquipmentStateHistory {
     @JoinColumn(name = "equipment_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Equipment equipment;
     @Column(name = "date", insertable = false, updatable = false)
-    private Timestamp date;
+    private LocalDateTime date;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "equipment_state_id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -25,7 +25,7 @@ public class EquipmentStateHistory {
     public EquipmentStateHistory() {
     }
 
-    public EquipmentStateHistory(EquipmentStateHistoryId equipmentStateHistoryId, Equipment equipment, Timestamp date, EquipmentState equipmentState) {
+    public EquipmentStateHistory(EquipmentStateHistoryId equipmentStateHistoryId, Equipment equipment, LocalDateTime date, EquipmentState equipmentState) {
         this.equipmentStateHistoryId = equipmentStateHistoryId;
         this.equipment = equipment;
         this.date = date;
@@ -48,11 +48,11 @@ public class EquipmentStateHistory {
         this.equipment = equipment;
     }
 
-    public Timestamp getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

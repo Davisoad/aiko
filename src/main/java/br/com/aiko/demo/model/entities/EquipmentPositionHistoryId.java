@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -14,12 +15,12 @@ public class EquipmentPositionHistoryId implements Serializable {
     private UUID equipmentId;
 
     @Column(name = "date")
-    private Timestamp date;
+    private LocalDateTime date;
 
     public EquipmentPositionHistoryId() {
     }
 
-    public EquipmentPositionHistoryId(UUID equipmentId, Timestamp date) {
+    public EquipmentPositionHistoryId(UUID equipmentId, LocalDateTime date) {
         this.equipmentId = equipmentId;
         this.date = date;
     }
@@ -32,11 +33,11 @@ public class EquipmentPositionHistoryId implements Serializable {
         this.equipmentId = equipmentId;
     }
 
-    public Timestamp getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

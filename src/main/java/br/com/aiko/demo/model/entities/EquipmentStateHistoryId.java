@@ -3,7 +3,7 @@ package br.com.aiko.demo.model.entities;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -15,12 +15,12 @@ public class EquipmentStateHistoryId implements Serializable {
     @Column(name = "equipment_state_id")
     private UUID equipmentStateId;
     @Column(name = "date")
-    private Timestamp date;
+    private LocalDateTime date;
 
     public EquipmentStateHistoryId() {
     }
 
-    public EquipmentStateHistoryId(UUID equipmentId, UUID equipmentStateId, Timestamp date) {
+    public EquipmentStateHistoryId(UUID equipmentId, UUID equipmentStateId, LocalDateTime date) {
         this.equipmentId = equipmentId;
         this.equipmentStateId = equipmentStateId;
         this.date = date;
@@ -42,11 +42,11 @@ public class EquipmentStateHistoryId implements Serializable {
         this.equipmentStateId = equipmentStateId;
     }
 
-    public Timestamp getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
