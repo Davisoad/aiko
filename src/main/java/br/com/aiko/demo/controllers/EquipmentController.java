@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+    import javax.validation.Valid;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,7 +35,7 @@ public class EquipmentController {
                 .orElseThrow(() -> new IllegalArgumentException("Equipamento não encontrado"));
 
         equipment.setName(equipmentAtualizado.getName());
-        equipment.setEquipmentModelId(equipmentAtualizado.getEquipmentModelId());
+        equipment.setEquipment_model_id(equipmentAtualizado.getEquipment_model_id());
 
         return ResponseEntity.ok(equipmentRepository.save(equipment));
     }
